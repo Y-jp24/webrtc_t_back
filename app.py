@@ -47,5 +47,6 @@ def connect_rtc():
     return response.content, 200, {'Content-Type': 'application/sdp'}
 
 if __name__ == '__main__':
-    # Set Flask app to run on port 8813
-    app.run(debug=True, port=8813)
+    port = int(os.environ.get('PORT', 8813))
+    debug_mode = os.environ.get('FLASK_ENV', 'development') != 'production'
+    app.run(port=port, debug=debug_mode)
